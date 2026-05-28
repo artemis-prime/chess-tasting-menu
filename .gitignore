@@ -5,6 +5,7 @@
 
 # production
 **/dist
+**/types
 
 # misc
 npm-debug.log*

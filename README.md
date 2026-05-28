@@ -31,7 +31,7 @@ Please run all scripts from the monorepo root (where the root `package.json` liv
 
 * First, run `yarn install` to install all dependencies for all targets.
 
-* Then run either `yarn prepare:web` or `yarn prepare:rn` depending on your desired version.
+* Then run either `yarn prep:web` or `yarn prep:rn` depending on your desired version.
 
 * To see the React web version, run `yarn serve:web`.  This will start a [vite](https://vitejs.dev/) dev server at `localhost:8080/chess-two-ways/`.  The first time you may need to open a tab manually.  
 

@@ -9,7 +9,7 @@ const config = {
   watchFolders: [
       // https://github.com/facebook/metro/issues/1#issuecomment-1700884618
     path.resolve(__dirname, '../..'),
-    path.resolve(__dirname, '../../just-the-chess/node_modules'),
+    path.resolve(__dirname, '../../raw-chess/node_modules'),
   ],
 
   transformer: {

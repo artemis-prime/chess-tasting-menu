@@ -6,24 +6,24 @@
   "engines": {
     "pnpm": ">=8"
   },
-  "scripts_": {
-    "_build:first-time": "pnpm install && pnpm prepare:serve",
-    "_build:domain": "yarn workspace @artemis-prime/chess-core build",
-    "_build:web": "yarn workspace @artemis-prime/chess-web build",
-    "tcheck:web": "yarn workspace @artemis-prime/chess-web tcheck",
-    "prepare:web": "yarn build:domain && yarn refresh:web && yarn tcheck:web",
-    "refresh:web": "yarn clean:web && yarn install",
-    "refresh:rn": "yarn clean:rn && yarn install",
-    "tcheck:rn": "yarn workspace @artemis-prime/chess-react-native tcheck",
-    "prepare:rn": "yarn build:domain && yarn refresh:rn",
-    "serve:web": "yarn workspace @artemis-prime/chess-web start",
-    "serve:rn": "yarn workspace @artemis-prime/chess-react-native start",
-    "deploy:rn": "yarn workspace @artemis-prime/chess-react-native deploy",
-    "link-assets:rn": "yarn workspace @artemis-prime/chess-react-native link-assets",
-    "clean:domain": "yarn workspace @artemis-prime/chess-core clean",
-    "clean:web": "yarn workspace @artemis-prime/chess-web clean",
-    "clean:rn": "yarn workspace @artemis-prime/chess-react-native clean",
-    "clean:all": "rm -rf ./node_modules && yarn clean:domain && yarn clean:web && yarn clean:rn"
+  "scripts": {
+    "_build:first-time": "pnpm install && pnpm prep:serve",
+    "tc:domain": "pnpm --filter @artemis-prime/chess-core tc",
+    "build:web": "pnpm --filter @artemis-prime/chess-a-la-web build",
+    "tc:web": "pnpm --filter @artemis-prime/chess-a-la-web tc",
+    "tc:rn": "pnpm --filter @artemis-prime/chess-react-native tc",
+    "prep:web": "pnpm refresh:web && pnpm tc:web",
+    "prep:rn": "pnpm refresh:rn",
+    "refresh:web": "pnpm clean:web && pnpm install",
+    "refresh:rn": "pnpm clean:rn && pnpm install",
+    "serve:web": "pnpm --filter @artemis-prime/chess-a-la-web start",
+    "serve:rn": "pnpm --filter @artemis-prime/chess-react-native start",
+    "deploy:rn": "pnpm --filter @artemis-prime/chess-react-native load",
+    "link-assets:rn": "pnpm --filter @artemis-prime/chess-react-native link-assets",
+    "clean:domain": "pnpm --filter @artemis-prime/chess-core clean",
+    "clean:web": "pnpm --filter @artemis-prime/chess-a-la-web clean",
+    "clean:rn": "pnpm --filter @artemis-prime/chess-react-native clean",
+    "clean:all": "rm -rf ./node_modules && pnpm clean:domain && pnpm clean:web && pnpm clean:rn"
   },
   "pnpm": {
     "overrides": {

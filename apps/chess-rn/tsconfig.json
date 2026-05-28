@@ -6,7 +6,6 @@
     "lib": [
       "es2020"
     ],
-    "composite": true,
     "allowJs": true,
     "jsx": "react-native",
     "noEmit": true,
@@ -24,9 +23,5 @@
     "babel.config.js",
     "metro.config.js",
   ],
-  "references": [
-    { "path": "../../just-the-chess" },
-  ],
-
 }
   

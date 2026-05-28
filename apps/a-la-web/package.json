@@ -1,0 +1,51 @@
+{
+  "name": "@artemis-prime/chess-a-la-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@artemis-prime/chess-core": "workspace:*",
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/modifiers": "^7.0.0",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-menubar": "^1.0.4",
+    "mobx": "6.12.0",
+    "mobx-react-lite": "4.0.5",
+    "mobx-utils": "6.0.8",
+    "react": "18.2.0",
+    "react-dom": "^18.2.0",
+    "react-resize-detector": "^10.0.1",
+    "react-responsive": "^9.0.2",
+    "react-scrollable-feed": "^2.0.1",
+    "react-switch": "^7.0.0",
+    "sass": "^1.70.0",
+    "vite-plugin-svgr": "^4.2.0"
+  },
+  "devDependencies": {
+    "@stitches/react": "^1.2.8",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "path": "^0.12.7",
+    "typescript": "5.3.3",
+    "vite": "^5.0.12"
+  },
+  "scripts": {
+    "build": "pnpm tc && vite build",
+    "start": "vite",
+    "clean": "rm -rf ./dist && rm -rf ./node_modules",
+    "tc": "tsc"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
