@@ -8,11 +8,10 @@ import {
 } from 'mobx'
 
 import { 
-  type MoveType,
+  type MoveAttempt,
   MoveRecord,
-  type HistoryMode,
-  type Move,
-  type Check,  
+  type ApplyMode,
+  type Check,
   type Side, 
   type GameStatus,
   type ChessListener,
@@ -90,9 +89,9 @@ class TransientMessageImpl implements ChessListener, TransientMessage {
   gameStatusChanged(s: GameStatus): void {}
   inCheck({side, from}: Check): void {}
   notInCheck(side: Side): void {}
-  actionResolved(m: Move, action: MoveType | null): void { }
-  actionTaken(r: MoveRecord, mode: HistoryMode): void {}
-  actionsRestored(recs: readonly MoveRecord[]): void {}
+  moveTried(attempt: MoveAttempt): void { }
+  moveApplied(record: MoveRecord, mode: ApplyMode): void {}
+  movesRestored(records: readonly MoveRecord[]): void {}
 }
 
 export {

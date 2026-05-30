@@ -4,7 +4,7 @@ import {
   makeObservable, 
 } from 'mobx'
 
-import MoveRecord, { type HistoryMode } from '../../model/move-record'
+import MoveRecord, { type ApplyMode } from '../../model/move-record'
 import type Check from '../../model/check'
 import { 
   type default as Piece, 
@@ -65,7 +65,7 @@ interface BoardSnapshot {
   // This interface is visable to GameImpl, but not to any UI
 interface BoardInternal extends Board, Snapshotable<BoardSnapshot> {
 
-  applyAction(r: MoveRecord, mode: HistoryMode): void 
+  applyAction(r: MoveRecord, mode: ApplyMode): void 
 
   takeSnapshot(): BoardSnapshot,
   restoreFromSnapshot(board: BoardSnapshot): void
@@ -308,7 +308,7 @@ class BoardImpl implements BoardInternal {
     return this._positionCanBeCapturedFrom(pos, asSide, 'boolean') as boolean
   }
 
-  applyAction(r: MoveRecord, mode: HistoryMode): void {
+  applyAction(r: MoveRecord, mode: ApplyMode): void {
 
     if (r.type === 'castle') {
       this._castle(r, mode)
@@ -392,7 +392,7 @@ class BoardImpl implements BoardInternal {
     this._sq(from).occupant = null 
   }
 
-  private _castle(r: MoveRecord, mode: HistoryMode): void {
+  private _castle(r: MoveRecord, mode: ApplyMode): void {
 
     if (mode === 'undo') {
       if (r.move.to.file === 'g') {
@@ -416,7 +416,7 @@ class BoardImpl implements BoardInternal {
     }
   }
 
-  private _track(r: MoveRecord, mode: HistoryMode): void {
+  private _track(r: MoveRecord, mode: ApplyMode): void {
 
     const side = r.move.piece.side
       // fall through, for rooks

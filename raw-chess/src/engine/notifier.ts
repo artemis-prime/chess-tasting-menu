@@ -1,8 +1,7 @@
 import type ChessListener from '../model/chess-listener'
-import type MoveType from '../model/move-type'
-import type { Side }  from '../model/piece' 
-import type Move from '../model/move' 
-import MoveRecord, { type HistoryMode } from '../model/move-record'
+import type MoveAttempt from '../model/move-attempt'
+import type { Side }  from '../model/piece'
+import MoveRecord, { type ApplyMode } from '../model/move-record'
 import type GameStatus from '../model/game-status'
 import type Check from '../model/check'
 
@@ -20,21 +19,21 @@ class Notifier implements ChessListener {
     this._listeners.delete(uniqueId)
   }
 
-  actionResolved(move: Move, action: MoveType | null): void {
+  moveTried(attempt: MoveAttempt): void {
     this._listeners.forEach((l) => {
-      l.actionResolved(move, action)
+      l.moveTried(attempt)
     })
   }
 
-  actionTaken(r: MoveRecord, mode: HistoryMode): void {
+  moveApplied(record: MoveRecord, mode: ApplyMode): void {
     this._listeners.forEach((l) => {
-      l.actionTaken(r, mode)
+      l.moveApplied(record, mode)
     })
   }
 
-  actionsRestored(recs: readonly MoveRecord[]): void {
+  movesRestored(records: readonly MoveRecord[]): void {
     this._listeners.forEach((l) => {
-      l.actionsRestored(recs)
+      l.movesRestored(records)
     })
   }
 

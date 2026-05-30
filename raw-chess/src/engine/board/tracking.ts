@@ -1,6 +1,6 @@
 import { makeObservable, observable, action } from 'mobx'
 
-import type { HistoryMode } from '../../model/move-record'
+import type { ApplyMode } from '../../model/move-record'
 import type CastlingTracking from '../../model/castling-tracking'
 import type Move from '../../model/move'
 import type Position from '../../model/position'
@@ -297,7 +297,7 @@ class TrackingForSide implements Snapshotable<TrackingForSideSnapshot> {
     return this.primaries.rook[rookSide]
   }
 
-  trackPositionChange(m: Move, mode: HistoryMode): void {
+  trackPositionChange(m: Move, mode: ApplyMode): void {
     if (m.piece.type === 'king') {
       if (mode === 'undo') {
         this.king = m.from
@@ -347,7 +347,7 @@ class TrackingForSide implements Snapshotable<TrackingForSideSnapshot> {
     }
   }
 
-  trackCapture(piece: Piece, pos: Position, mode: HistoryMode): void {
+  trackCapture(piece: Piece, pos: Position, mode: ApplyMode): void {
 
     if (!isPrimaryType(piece.type)) return; 
 
@@ -380,7 +380,7 @@ class TrackingForSide implements Snapshotable<TrackingForSideSnapshot> {
     }
   }
 
-  trackPromotion(pos: Position, mode: HistoryMode ) {
+  trackPromotion(pos: Position, mode: ApplyMode ) {
       // Track the new piece of the promoted to type.
       // Either create a new slot of it with the to square,
       // or destroy said slot if undo
@@ -400,7 +400,7 @@ class TrackingForSide implements Snapshotable<TrackingForSideSnapshot> {
    
   }
 
-  trackCastle(m: Move, mode: HistoryMode): void {
+  trackCastle(m: Move, mode: ApplyMode): void {
       // castling does not effect the move counts for king and rooks
     if (mode === 'undo') {
       this.king = m.from

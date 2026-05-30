@@ -24,7 +24,7 @@ const ANNOTATION_FROM_RESULT = {
 const ANNOTATIONS = Object.values(ANNOTATION_FROM_RESULT)
 const ANNOTATEDRESULTS = Object.keys(ANNOTATION_FROM_RESULT) as AnnotatedResult[]
 
-type HistoryMode = 'do' | 'undo' | 'redo'
+type ApplyMode = 'do' | 'undo' | 'redo'
 
   // Use to record a change of state.
   // Must contain enough info to undo and redo said change. 
@@ -142,7 +142,7 @@ class MoveRecord {
 export { 
   MoveRecord as default,
   type AnnotatedResult,
-  type HistoryMode,
+  type ApplyMode,
   ANNOTATION_FROM_RESULT,
   ANNOTATIONS,
   ANNOTATEDRESULTS,

@@ -251,13 +251,13 @@ class GameImpl implements Game {
     this._applyInCheck()
     this._notifyCheck(null) // was tracked in restoreFromSnapshot() above
 
-      // The actionsRestored() notification should received *after* 
+      // The movesRestored() notification should received *after* 
       // the gameStatusChanged() notification.
       // If we just await the state change via when(), 
       // we effectively create a new listerner,  which by order of creation
       // will run *after* the listener created by autorun() in GameImpl's constructor.
     await when(() => this._gameStatus.state === stateToWaitFor);
-    this._notifier.actionsRestored([...this._actions])
+    this._notifier.movesRestored([...this._actions])
   }
 
   takeSnapshot(): GameSnapshot {
@@ -332,7 +332,7 @@ class GameImpl implements Game {
             this._notifier.messageSent(`(${r.toCommonLANString()} is ok to get out of check.)`, 'transient-info')  
           }
         } 
-        this._notifier.actionResolved(move, action)
+        this._notifier.moveTried({ move, type: action })
       } 
       this._reflectMoveAttempt({ move, type: action })
     }
@@ -358,7 +358,7 @@ class GameImpl implements Game {
     const previousCheck = this._board.check
     this._board.applyAction(r, 'do')
     this._reflectMoveAttempt(null)
-    this._notifier.actionTaken(r, 'do')
+    this._notifier.moveApplied(r, 'do')
     this._applyInCheck()
     this._notifyCheck(previousCheck)
     const currentCheck = this._board.check
@@ -396,7 +396,7 @@ class GameImpl implements Game {
       const r = this._actions[this._stateIndex]
       const previousCheck = this._board.check
       this._board.applyAction(r, 'undo')
-      this._notifier.actionTaken(r, 'undo')
+      this._notifier.moveApplied(r, 'undo')
       this._applyInCheck()      
       this._notifyCheck(previousCheck)
       this._stateIndex--
@@ -414,7 +414,7 @@ class GameImpl implements Game {
       const r = this._actions[this._stateIndex]
       const previousCheck = this._board.check
       this._board.applyAction(r, 'redo')
-      this._notifier.actionTaken(r, 'redo')
+      this._notifier.moveApplied(r, 'redo')
       this._applyInCheck()
       this._notifyCheck(previousCheck)
       const currentCheck = this._board.check

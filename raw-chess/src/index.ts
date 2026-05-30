@@ -5,7 +5,7 @@ export { MOVE_TYPES } from './model/move-type'
 export {
   default as MoveRecord,
   type AnnotatedResult,
-  type HistoryMode,
+  type ApplyMode,
   ANNOTATION_FROM_RESULT,
   ANNOTATIONS,
   ANNOTATEDRESULTS,
