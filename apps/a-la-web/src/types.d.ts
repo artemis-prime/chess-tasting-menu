@@ -14,4 +14,9 @@ declare module "*.png" {
   export default value;
 }
 
+declare module "*.scss" {
+  const content: { readonly [className: string]: string };
+  export default content;
+}
+
 declare module "path"

@@ -14,9 +14,9 @@
     "@artemis-prime/chess-core": "workspace:*",
     "@babel/runtime": "^7.23.9",
     "@radix-ui/colors": "^3.0.0",
-    "mobx": "6.12.0",
-    "mobx-react-lite": "^4.0.5",
-    "mobx-utils": "6.0.8",
+    "mobx": "*",
+    "mobx-react-lite": "^4.1.1",
+    "mobx-utils": "6.1.1",
     "react": "18.2.0",
     "react-native": "0.73.3",
     "react-native-device-info": "^10.12.0",
@@ -42,6 +42,6 @@
     "babel-plugin-module-resolver": "^5.0.0",
     "react-native-codegen": "^0.71.6",
     "react-test-renderer": "18.2.0",
-    "typescript": "5.3.3"
+    "typescript": "*"
   }
 }

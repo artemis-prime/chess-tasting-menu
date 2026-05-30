@@ -29,14 +29,14 @@ importers:
         specifier: ^1.0.4
         version: 1.1.16(@types/react-dom@18.3.7)(@types/react@18.3.29)(react-dom@18.3.1)(react@18.2.0)
       mobx:
-        specifier: 6.12.0
-        version: 6.12.0
+        specifier: 6.15.4
+        version: 6.15.4
       mobx-react-lite:
-        specifier: 4.0.5
-        version: 4.0.5(mobx@6.12.0)(react-dom@18.3.1)(react@18.2.0)
+        specifier: 4.1.1
+        version: 4.1.1(mobx@6.15.4)(react-dom@18.3.1)(react@18.2.0)
       mobx-utils:
-        specifier: 6.0.8
-        version: 6.0.8(mobx@6.12.0)
+        specifier: 6.1.1
+        version: 6.1.1(mobx@6.15.4)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -60,7 +60,7 @@ importers:
         version: 1.100.0
       vite-plugin-svgr:
         specifier: ^4.2.0
-        version: 4.5.0(typescript@5.3.3)(vite@5.4.21)
+        version: 4.5.0(typescript@6.0.3)(vite@5.4.21)
     devDependencies:
       '@stitches/react':
         specifier: ^1.2.8
@@ -78,8 +78,8 @@ importers:
         specifier: ^0.12.7
         version: 0.12.7
       typescript:
-        specifier: 5.3.3
-        version: 5.3.3
+        specifier: 6.0.3
+        version: 6.0.3
       vite:
         specifier: ^5.0.12
         version: 5.4.21(sass@1.100.0)
@@ -96,14 +96,14 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       mobx:
-        specifier: 6.12.0
-        version: 6.12.0
+        specifier: 6.15.4
+        version: 6.15.4
       mobx-react-lite:
-        specifier: ^4.0.5
-        version: 4.0.5(mobx@6.12.0)(react-native@0.73.3)(react@18.2.0)
+        specifier: ^4.1.1
+        version: 4.1.1(mobx@6.15.4)(react-native@0.73.3)(react@18.2.0)
       mobx-utils:
-        specifier: 6.0.8
-        version: 6.0.8(mobx@6.12.0)
+        specifier: 6.1.1
+        version: 6.1.1(mobx@6.15.4)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -175,18 +175,18 @@ importers:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
       typescript:
-        specifier: 5.3.3
-        version: 5.3.3
+        specifier: 6.0.3
+        version: 6.0.3
 
   raw-chess:
     dependencies:
       mobx:
-        specifier: 6.12.0
-        version: 6.12.0
+        specifier: 6.15.4
+        version: 6.15.4
     devDependencies:
       typescript:
-        specifier: 5.3.3
-        version: 5.3.3
+        specifier: 6.0.3
+        version: 6.0.3
 
 packages:
 
@@ -3233,14 +3233,14 @@ packages:
       '@svgr/babel-plugin-transform-svg-component': 8.0.0(@babel/core@7.29.7)
     dev: false
 
-  /@svgr/core@8.1.0(typescript@5.3.3):
+  /@svgr/core@8.1.0(typescript@6.0.3):
     resolution: {integrity: sha512-8QqtOQT5ACVlmsvKOJNEaWmRPmcojMOzCz4Hs2BGG/toAp/K38LcsMRyLp349glq5AzJbCEeimEoxaX6v/fLrA==}
     engines: {node: '>=14'}
     dependencies:
       '@babel/core': 7.29.7
       '@svgr/babel-preset': 8.1.0(@babel/core@7.29.7)
       camelcase: 6.3.0
-      cosmiconfig: 8.3.6(typescript@5.3.3)
+      cosmiconfig: 8.3.6(typescript@6.0.3)
       snake-case: 3.0.4
     transitivePeerDependencies:
       - supports-color
@@ -3263,7 +3263,7 @@ packages:
     dependencies:
       '@babel/core': 7.29.7
       '@svgr/babel-preset': 8.1.0(@babel/core@7.29.7)
-      '@svgr/core': 8.1.0(typescript@5.3.3)
+      '@svgr/core': 8.1.0(typescript@6.0.3)
       '@svgr/hast-util-to-babel-ast': 8.0.0
       svg-parser: 2.0.4
     transitivePeerDependencies:
@@ -3849,7 +3849,7 @@ packages:
       js-yaml: 3.14.2
       parse-json: 4.0.0
 
-  /cosmiconfig@8.3.6(typescript@5.3.3):
+  /cosmiconfig@8.3.6(typescript@6.0.3):
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -3862,7 +3862,7 @@ packages:
       js-yaml: 4.1.1
       parse-json: 5.2.0
       path-type: 4.0.0
-      typescript: 5.3.3
+      typescript: 6.0.3
     dev: false
 
   /cross-spawn@7.0.6:
@@ -5023,11 +5023,11 @@ packages:
     hasBin: true
     dev: false
 
-  /mobx-react-lite@4.0.5(mobx@6.12.0)(react-dom@18.3.1)(react@18.2.0):
-    resolution: {integrity: sha512-StfB2wxE8imKj1f6T8WWPf4lVMx3cYH9Iy60bbKXEs21+HQ4tvvfIBZfSmMXgQAefi8xYEwQIz4GN9s0d2h7dg==}
+  /mobx-react-lite@4.1.1(mobx@6.15.4)(react-dom@18.3.1)(react@18.2.0):
+    resolution: {integrity: sha512-iUxiMpsvNraCKXU+yPotsOncNNmyeS2B5DKL+TL6Tar/xm+wwNJAubJmtRSeAoYawdZqwv8Z/+5nPRHeQxTiXg==}
     peerDependencies:
       mobx: ^6.9.0
-      react: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
       react-dom: '*'
       react-native: '*'
     peerDependenciesMeta:
@@ -5036,17 +5036,17 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 6.12.0
+      mobx: 6.15.4
       react: 18.2.0
       react-dom: 18.3.1(react@18.2.0)
       use-sync-external-store: 1.6.0(react@18.2.0)
     dev: false
 
-  /mobx-react-lite@4.0.5(mobx@6.12.0)(react-native@0.73.3)(react@18.2.0):
-    resolution: {integrity: sha512-StfB2wxE8imKj1f6T8WWPf4lVMx3cYH9Iy60bbKXEs21+HQ4tvvfIBZfSmMXgQAefi8xYEwQIz4GN9s0d2h7dg==}
+  /mobx-react-lite@4.1.1(mobx@6.15.4)(react-native@0.73.3)(react@18.2.0):
+    resolution: {integrity: sha512-iUxiMpsvNraCKXU+yPotsOncNNmyeS2B5DKL+TL6Tar/xm+wwNJAubJmtRSeAoYawdZqwv8Z/+5nPRHeQxTiXg==}
     peerDependencies:
       mobx: ^6.9.0
-      react: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
       react-dom: '*'
       react-native: '*'
     peerDependenciesMeta:
@@ -5055,22 +5055,22 @@ packages:
       react-native:
         optional: true
     dependencies:
-      mobx: 6.12.0
+      mobx: 6.15.4
       react: 18.2.0
       react-native: 0.73.3(@babel/core@7.29.7)(@babel/preset-env@7.29.7)(react@18.2.0)
       use-sync-external-store: 1.6.0(react@18.2.0)
     dev: false
 
-  /mobx-utils@6.0.8(mobx@6.12.0):
-    resolution: {integrity: sha512-fPNt0vJnHwbQx9MojJFEnJLfM3EMGTtpy4/qOOW6xueh1mPofMajrbYAUvByMYAvCJnpy1A5L0t+ZVB5niKO4g==}
+  /mobx-utils@6.1.1(mobx@6.15.4):
+    resolution: {integrity: sha512-ZR4tOKucWAHOdMjqElRl2BEvrzK7duuDdKmsbEbt2kzgVpuLuoYLiDCjc3QwWQl8CmOlxPgaZQpZ7emwNqPkIg==}
     peerDependencies:
       mobx: ^6.0.0
     dependencies:
-      mobx: 6.12.0
+      mobx: 6.15.4
     dev: false
 
-  /mobx@6.12.0:
-    resolution: {integrity: sha512-Mn6CN6meXEnMa0a5u6a5+RKrqRedHBhZGd15AWLk9O6uFY4KYHzImdt8JI8WODo1bjTSRnwXhJox+FCUZhCKCQ==}
+  /mobx@6.15.4:
+    resolution: {integrity: sha512-do+2UsEKRVT70W/QqP2F2sju2x4p2xZo+5/azXqKjXgTk2jfmzsLjzwW0YI8CBEjy4ZUdU8EunXocXXwJdCrtw==}
     dev: false
 
   /ms@2.0.0:
@@ -6231,8 +6231,8 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /typescript@5.3.3:
-    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+  /typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -6334,13 +6334,13 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
-  /vite-plugin-svgr@4.5.0(typescript@5.3.3)(vite@5.4.21):
+  /vite-plugin-svgr@4.5.0(typescript@6.0.3)(vite@5.4.21):
     resolution: {integrity: sha512-W+uoSpmVkSmNOGPSsDCWVW/DDAyv+9fap9AZXBvWiQqrboJ08j2vh0tFxTD/LjwqwAd3yYSVJgm54S/1GhbdnA==}
     peerDependencies:
       vite: '>=2.6.0'
     dependencies:
       '@rollup/pluginutils': 5.3.0
-      '@svgr/core': 8.1.0(typescript@5.3.3)
+      '@svgr/core': 8.1.0(typescript@6.0.3)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0)
       vite: 5.4.21(sass@1.100.0)
     transitivePeerDependencies:

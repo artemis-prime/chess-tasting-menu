@@ -27,7 +27,9 @@
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "^18.2.48"
+      "@types/react": "18.2.48",
+      "typescript": "6.0.3",
+      "mobx": "6.15.4"
     }
   }
 }

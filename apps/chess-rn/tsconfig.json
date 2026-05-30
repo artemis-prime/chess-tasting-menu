@@ -3,13 +3,10 @@
   "extends": "../../tsconfig.base",
 
   "compilerOptions": {
-    "lib": [
-      "es2020"
-    ],
     "allowJs": true,
     "jsx": "react-native",
     "noEmit": true,
-    "baseUrl": ".",
+      // paths resolve relative to this tsconfig; baseUrl is deprecated in TS 6
     "paths": {
       "~/*": ["./src/*"],
     },
