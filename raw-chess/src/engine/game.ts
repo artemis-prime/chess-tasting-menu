@@ -36,11 +36,11 @@ import {
 
 import type Position from '../model/position'
 import { positionToString } from '../model/position'
-import type Resolution from '../model/resolution'
+import type MoveAttempt from '../model/move-attempt'
 import type LegalMove from '../model/legal-move'
 import type ObsSquare from '../model/observable/obs-square'
 
-import { getResolutionStateForPosition, getCheckStateForPosition } from './status-util'
+import { getMoveAttemptStateForPosition, getCheckStateForPosition } from './status-util'
 import type { default as MoveRule } from './move-rule'
 import Notifier from './notifier'
 import registry from './rules-registry'
@@ -69,14 +69,14 @@ interface Game extends Snapshotable<GameSnapshot> {
     // the move attempted. (This could be used during drag'n'drop 
     // canDropOnMe() type functions.)
     // 
-    // Resolution resulting from resolveAction() for the
+    // MoveAttempt resulting from tryMove() for the
     // same move *will be cached* internally until:
-    //  1) takeResolvedAction() is called 
-    //  2) abandonResolution() is called 
+    //  1) finalizeMove() is called 
+    //  2) abandonMove() is called 
     // Note that this is a form of debouncing
-  resolveAction(m: Move): MoveType | null
-  takeResolvedAction(): boolean // action was taken
-  abandonResolution(): void
+  tryMove(m: Move): MoveType | null
+  finalizeMove(): boolean // action was taken
+  abandonMove(): void
   
   get canUndo(): boolean
   get canRedo(): boolean
@@ -127,7 +127,7 @@ class GameImpl implements Game {
     // reflects the state after that MoveType has been applied. 
     // (This fascilitates impl of undo / redo)
   private _stateIndex = -1 
-  private _resolution: Resolution | null = null 
+  private _attempt: MoveAttempt | null = null 
 
   private _notifier: Notifier = new Notifier() 
 
@@ -137,7 +137,7 @@ class GameImpl implements Game {
     this._scratchBoard = createBoard(this._isCapture.bind(this))
   
     makeObservable(this, {
-      takeResolvedAction: action,
+      finalizeMove: action,
       undo: action.bound,
       redo: action.bound,
       reset: action.bound, // action.bound makes it easy to call from button's onChange
@@ -160,7 +160,7 @@ class GameImpl implements Game {
       '_toggleTurn' | 
       '_stateIndex' |
       '_actions' |
-      '_applyResolution' | 
+      '_reflectMoveAttempt' | 
       '_checkStalemate' |
       '_gameStatus'
     >(this, {
@@ -169,7 +169,7 @@ class GameImpl implements Game {
       _toggleTurn: action,
       _stateIndex: observable,
       _actions: observable.shallow,
-      _applyResolution: action,
+      _reflectMoveAttempt: action,
       _checkStalemate: action
     })
   }
@@ -301,11 +301,11 @@ class GameImpl implements Game {
     return !!result?.includes('capture')
   }
 
-  resolveAction(move: Move): MoveType | null {
+  tryMove(move: Move): MoveType | null {
 
     if (!this.playing) return null
 
-    if (!this._resolution || !movesEqual(this._resolution!.move, move)) {
+    if (!this._attempt || !movesEqual(this._attempt!.move, move)) {
       if (!move.piece) {
         this._notifier.messageSent(`There's no piece at ${positionToString}!`, 'transient-warning') 
       }
@@ -334,30 +334,30 @@ class GameImpl implements Game {
         } 
         this._notifier.actionResolved(move, action)
       } 
-      this._applyResolution({ move, type: action })
+      this._reflectMoveAttempt({ move, type: action })
     }
-    return this._resolution!.type
+    return this._attempt!.type
   }
 
-  abandonResolution(): void {
-    this._applyResolution(null)
+  abandonMove(): void {
+    this._reflectMoveAttempt(null)
   }
 
-  takeResolvedAction(): boolean {
+  finalizeMove(): boolean {
 
     if (!this.playing) {
       return false
     }
-    if (!this._resolution?.type) {
-      this.abandonResolution()
+    if (!this._attempt?.type) {
+      this.abandonMove()
       return false
     }
 
-    const { move, type: action } = this._resolution
+    const { move, type: action } = this._attempt
     const r = new MoveRecord(move, action, this._getCaptured(move, action))
     const previousCheck = this._board.check
     this._board.applyAction(r, 'do')
-    this._applyResolution(null)
+    this._reflectMoveAttempt(null)
     this._notifier.actionTaken(r, 'do')
     this._applyInCheck()
     this._notifyCheck(previousCheck)
@@ -428,11 +428,11 @@ class GameImpl implements Game {
     }
   }
 
-  private _applyResolution(res: Resolution | null) {
+  private _reflectMoveAttempt(res: MoveAttempt | null) {
 
-    this._resolution = res
+    this._attempt = res
     this._board.asSquares.forEach((sq: Square) => {
-      sq.setSquareState(getResolutionStateForPosition(sq, res))
+      sq.setSquareState(getMoveAttemptStateForPosition(sq, res))
     });
   }
 

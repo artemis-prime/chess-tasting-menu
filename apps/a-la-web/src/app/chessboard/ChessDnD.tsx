@@ -64,7 +64,7 @@ const ChessDnDShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   }
 
   const onDragEnd = (event: DragEndEvent) => {
-    const taken = game.takeResolvedAction()
+    const taken = game.finalizeMove()
     dragStateRef.current.clear()
     //console.log(`drag ended: ${!taken ? 'NO ' : ''}action taken`)
   }
@@ -74,7 +74,7 @@ const ChessDnDShell: React.FC<React.PropsWithChildren> = ({ children }) => {
     const pos = (event.over && event.over.data.current) ? event.over.data.current.position : null
     if (pos && dragStateRef.current.piece) {
       if (!positionsEqual(pos, dragStateRef.current.squareOver!)) {
-        game.resolveAction({
+        game.tryMove({
           piece: dragStateRef.current.piece, 
           from: dragStateRef.current.from!, // will be set if piece is
           to: pos
@@ -85,7 +85,7 @@ const ChessDnDShell: React.FC<React.PropsWithChildren> = ({ children }) => {
   }
 
   const onDragCancel = (event: DragCancelEvent) => {
-    game.abandonResolution()
+    game.abandonMove()
     dragStateRef.current.clear()
     //console.log('drag cancelled, NO action taken')
   }

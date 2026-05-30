@@ -5,9 +5,9 @@ import type Move from './move'
   // under the cursor during a drag): the move paired with the kind it
   // resolves to, or null when the move is invalid. Drives square
   // highlighting. Contrast with LegalMove, whose type is never null.
-interface Resolution {
+interface MoveAttempt {
   readonly move: Move
   readonly type: MoveType | null
 }
 
-export { type Resolution as default }
+export { type MoveAttempt as default }

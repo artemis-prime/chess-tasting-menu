@@ -1,13 +1,13 @@
 import type Position from '../model/position'
 import { positionsEqual } from '../model/position'
 import type SquareState from '../model/square-state'
-import type Resolution from '../model/resolution'
+import type MoveAttempt from '../model/move-attempt'
 import type Check from '../model/check'
 
 // Convienence for game implementations / ui's.
-const getResolutionStateForPosition = (
+const getMoveAttemptStateForPosition = (
   p: Position,
-  res: Resolution | null
+  res: MoveAttempt | null
 ): SquareState => {
 
   if (res && positionsEqual(res.move.from, p)) {
@@ -61,4 +61,4 @@ const getCheckStateForPosition = (
   return 'none'
 }
 
-export { getResolutionStateForPosition, getCheckStateForPosition }
+export { getMoveAttemptStateForPosition, getCheckStateForPosition }

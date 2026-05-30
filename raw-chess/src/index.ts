@@ -33,7 +33,7 @@ export {
 } from './model/position'
 export type { default as Snapshotable } from './engine/snapshotable'
 export type { default as SquareState } from './model/square-state'
-export type { default as Resolution} from './model/resolution'
+export type { default as MoveAttempt} from './model/move-attempt'
 export type { default as LegalMove } from './model/legal-move'
 export type { default as ObsSquare } from './model/observable/obs-square'
 
