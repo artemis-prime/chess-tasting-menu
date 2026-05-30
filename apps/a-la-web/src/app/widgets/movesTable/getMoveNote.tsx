@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { ActionRecord, PIECETYPE_TO_UNICODE } from '@artemis-prime/chess-core'
+import { MoveRecord, PIECETYPE_TO_UNICODE } from '@artemis-prime/chess-core'
 
 import { styled } from '~/style'
 
@@ -8,7 +8,7 @@ import SideSwatch from '../SideSwatch'
 import EMOJIS from './emojis'
 
 interface GetMoveNoteFn {
-  (action: ActionRecord, prevAction: ActionRecord): ReactNode
+  (action: MoveRecord, prevAction: MoveRecord): ReactNode
 }
 
 const Outer = styled('span', {})
@@ -40,7 +40,7 @@ const Text = styled('span', {
   color: 'inherit'
 })
 
-const getMoveComment = (rec: ActionRecord, previous: ActionRecord | undefined): ReactNode => {
+const getMoveComment = (rec: MoveRecord, previous: MoveRecord | undefined): ReactNode => {
 
   const result: ReactNode[] = [] 
   let check = false
@@ -64,7 +64,7 @@ const getMoveComment = (rec: ActionRecord, previous: ActionRecord | undefined): 
       </Outer>
     )
   }
-  if (rec.action.includes('capture')) {
+  if (rec.type.includes('capture')) {
       // Even though its technically in response to the pawn
       // capture, 'meh' seems odd after a check!
     if (!(check && rec.captured!.type === 'pawn')) {

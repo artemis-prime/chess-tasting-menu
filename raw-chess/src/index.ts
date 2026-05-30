@@ -1,38 +1,40 @@
   // Note: these are the exports for the *module*.  
   // Only export what the apps actually import!
-export type { default as Action } from './Action'
-export { ACTIONS } from './Action'
-export { 
-  default as ActionRecord,
+export type { default as MoveType } from './model/move-type'
+export { MOVE_TYPES } from './model/move-type'
+export {
+  default as MoveRecord,
   type AnnotatedResult,
+  type HistoryMode,
   ANNOTATION_FROM_RESULT,
   ANNOTATIONS,
   ANNOTATEDRESULTS,
-} from './ActionRecord'
+} from './model/move-record'
 
-export type { default as CastlingTracking } from './CastlingTracking'
-export type { default as Check } from './Check'
-export type { default as ChessListener } from './ChessListener'
-export type { default as Game, GameSnapshot } from './Game'
-export { getGameSingleton } from './Game'
-export type { default as GameStatus } from './GameStatus'
-export type { default as Move } from './Move'
-export type { default as Piece, Side, PieceType } from './Piece'
-export { pieceToString, piecesEqual, isOpponent } from './Piece'
-export type { default as ObsPieceRef } from './ObsPieceRef'
-export type { default as ObsSquareStateRef } from './ObsSquareStateRef'
-export type { default as Position} from './Position'
-export type { Rank, File } from './Position'
+export type { default as CastlingTracking } from './model/castling-tracking'
+export type { default as Check } from './model/check'
+export type { default as ChessListener } from './model/chess-listener'
+export type { default as Game, GameSnapshot } from './engine'
+export { getGameSingleton } from './engine'
+export type { default as GameStatus } from './model/game-status'
+export type { default as Move } from './model/move'
+export type { default as Piece, Side, PieceType } from './model/piece'
+export { pieceToString, piecesEqual, isOpponent } from './model/piece'
+export type { default as ObsPieceRef } from './model/observable/obs-piece-ref'
+export type { default as ObsSquareStateRef } from './model/observable/obs-square-state-ref'
+export type { default as Position} from './model/position'
+export type { Rank, File } from './model/position'
 export { 
   positionsEqual, 
   positionToString,
   layoutPositionToBoardPosition, 
   FILES, 
   RANKS, 
-} from './Position'
-export type { default as Snapshotable } from './Snapshotable'
-export type { default as SquareState } from './SquareState'
-export type { default as Resolution} from './Resolution'
-export type { default as ObsSquare } from './ObsSquare'
+} from './model/position'
+export type { default as Snapshotable } from './engine/snapshotable'
+export type { default as SquareState } from './model/square-state'
+export type { default as Resolution} from './model/resolution'
+export type { default as LegalMove } from './model/legal-move'
+export type { default as ObsSquare } from './model/observable/obs-square'
 
-export { default as PIECETYPE_TO_UNICODE} from './pieceTypeToUnicode'
+export { default as PIECETYPE_TO_UNICODE} from './model/piece-type-to-unicode'

@@ -80,7 +80,7 @@ const FeedbackView: React.FC<{
   const getEffectFromPositionState = (s: SquareState): EffectVariant  => {
 
     let effect: EffectVariant = undefined
-    if (s === 'move' || s === 'castle') {
+    if (s === 'simple' || s === 'castle') {
       effect = 'move'
     }
     else if (s.includes('romote') && pulses.fast) {

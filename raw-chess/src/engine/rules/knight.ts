@@ -1,0 +1,169 @@
+import type { 
+  MoveType, 
+  Piece, 
+  Position, 
+  Move, 
+  LegalMove,
+} from '../..'
+
+import type Board from '../board'
+
+import { isOpponent } from '../../model/piece'
+import { FILES } from '../../model/position'
+
+import {
+  hasN,
+  hasS,
+  hasE,
+  hasW,
+  getNRank,
+  getSRank,
+  getEFile,
+  getWFile,
+} from '../util'
+
+const legalMove = (
+  from: Position, 
+  to: Position, 
+): boolean => {
+
+  const deltaRank = to.rank - from.rank
+  const deltaFile = FILES.indexOf(to.file) - FILES.indexOf(from.file)
+  return (
+    Math.abs(deltaRank) === 2 && Math.abs(deltaFile) === 1    
+    ||
+    Math.abs(deltaFile) === 2 && Math.abs(deltaRank) === 1
+  ) 
+ }
+
+ const legalAs = (
+  board: Board,
+  move: Move,
+  messageFn?: (s: string) => void
+): MoveType | null => {
+  
+  const fromSide = board.getOccupantSide(move.from)
+  if (legalMove(move.from, move.to)) {
+    const toSide = board.getOccupantSide(move.to)
+    if (!toSide) {
+      return 'simple'
+    }
+    else if (fromSide && toSide && (fromSide !== toSide)) {
+      return 'capture'
+    }
+  }
+
+  return null
+}
+
+const legalMoves = (
+  board: Board,
+  piece: Piece,
+  from: Position,
+  ignoreCastling?: boolean // only relevant for king
+): LegalMove[] => {
+
+  const positions = [] as Position[]
+
+  if (hasN(from, 2)) {
+    const longSide = {
+      rank: getNRank(from, 2),
+      file: from.file
+    }
+    if (hasE(longSide)) {
+      positions.push({
+        file: getEFile(longSide),
+        rank: longSide.rank
+      })
+    }
+    if (hasW(longSide)) {
+      positions.push({
+        file: getWFile(longSide),
+        rank: longSide.rank
+      })
+    }
+  }
+  if (hasS(from, 2)) {
+    const longSide = {
+      rank: getSRank(from, 2),
+      file: from.file
+    }
+    if (hasE(longSide)) {
+      positions.push({
+        file: getEFile(longSide),
+        rank: longSide.rank
+      })
+    }
+    if (hasW(longSide)) {
+      positions.push({
+        file: getWFile(longSide),
+        rank: longSide.rank
+      })
+    }
+  }
+  if (hasE(from, 2)) {
+    const longSide = {
+      rank: from.rank,
+      file: getEFile(from, 2)
+    }
+    if (hasN(longSide)) {
+      positions.push({
+        file: longSide.file,
+        rank: getNRank(from),
+      })
+    }
+    if (hasS(longSide)) {
+      positions.push({
+        file: longSide.file,
+        rank: getSRank(from),
+      })
+    }
+  }
+  if (hasW(from, 2)) {
+    const longSide = {
+      rank: from.rank,
+      file: getWFile(from, 2)
+    }
+    if (hasN(longSide)) {
+      positions.push({
+        file: longSide.file,
+        rank: getNRank(from),
+      })
+    }
+    if (hasS(longSide)) {
+      positions.push({
+        file: longSide.file,
+        rank: getSRank(from),
+      })
+    }
+  }
+
+  const resolvable = [] as LegalMove[]
+  positions.forEach((pos) => {
+    const toPiece = board.getOccupant(pos)
+    if (!toPiece) {
+      resolvable.push({
+        move: {
+          piece,
+          from,
+          to: pos
+        },
+        type: 'simple'
+      })
+    }
+    else if (isOpponent(toPiece, piece.side)) {
+      resolvable.push({
+        move: {
+          piece,
+          from,
+          to: pos
+        },
+        type: 'capture'
+      })
+    }
+  })
+
+  return resolvable
+}
+
+export default {legalAs, legalMoves}

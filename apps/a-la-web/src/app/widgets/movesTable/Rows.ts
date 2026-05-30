@@ -5,17 +5,17 @@ import {
   action, 
 } from 'mobx'
 
-import { ActionRecord, type Side} from '@artemis-prime/chess-core'
+import { MoveRecord, type Side} from '@artemis-prime/chess-core'
 
 interface MoveRow {
   white: {
     str: string
-    rec: ActionRecord 
+    rec: MoveRecord 
     note: ReactNode
   }
   black: {
     str: string
-    rec: ActionRecord 
+    rec: MoveRecord 
     note: ReactNode
   } | null
 } 

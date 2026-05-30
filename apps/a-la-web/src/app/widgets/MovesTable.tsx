@@ -103,7 +103,7 @@ const MovesTable: React.FC<{
       return { color: '$chalkboardTextColorDisabled'}
     }
     const half = movePairs.rows[moveRow][side]
-    return {color:  half ? ((half.rec.annotatedResult || half.rec.action.includes('capture')) ? '$alert8' : '$chalkboardTextColor')  : '$chalkboardTextColor'}
+    return {color:  half ? ((half.rec.annotatedResult || half.rec.type.includes('capture')) ? '$alert8' : '$chalkboardTextColor')  : '$chalkboardTextColor'}
   })
 
   const disableSide = computedFn((moveRow: number, side: Side): boolean => {

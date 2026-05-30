@@ -42,7 +42,7 @@ class Helper {
       return { disabled: true }
     }
     const half = r[side]
-    return { alert: (!!half && (!!half.rec.annotatedResult || half.rec.action.includes('capture'))) }
+    return { alert: (!!half && (!!half.rec.annotatedResult || half.rec.type.includes('capture'))) }
   })
 
   disableSide = computedFn((moveRow: number, side: Side): boolean => {

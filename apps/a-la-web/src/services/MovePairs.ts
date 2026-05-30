@@ -7,18 +7,18 @@ import {
   reaction, 
 } from 'mobx'
 
-import { ActionRecord, type Game, type Side} from '@artemis-prime/chess-core'
+import { MoveRecord, type Game, type Side} from '@artemis-prime/chess-core'
 import type { GetMoveNoteFn } from '~/app/widgets/movesTable/getMoveNote'
 
 interface MovePair {
   white: {
     str: string
-    rec: ActionRecord 
+    rec: MoveRecord 
     note: ReactNode
   }
   black: {
     str: string
-    rec: ActionRecord 
+    rec: MoveRecord 
     note: ReactNode
   } | null
 } 

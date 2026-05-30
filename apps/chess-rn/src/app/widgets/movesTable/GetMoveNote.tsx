@@ -1,7 +1,7 @@
 import React, { type PropsWithChildren, type ReactNode } from 'react'
 import { Text, View } from 'react-native'
 
-import { ActionRecord, PIECETYPE_TO_UNICODE } from '@artemis-prime/chess-core'
+import { MoveRecord, PIECETYPE_TO_UNICODE } from '@artemis-prime/chess-core'
 
 import { styled } from '~/style'
 import { Row } from '~/primatives'
@@ -11,7 +11,7 @@ import NT from '~/app/widgets/movesTable/NotesText'
 import EMOJIS from '~/app/widgets/movesTable/emojis'
 
 interface GetMoveNoteFn {
-  (action: ActionRecord, prevAction: ActionRecord): ReactNode
+  (action: MoveRecord, prevAction: MoveRecord): ReactNode
 }
 
 const Outer: React.FC<PropsWithChildren> = ({
@@ -48,8 +48,8 @@ const Emoji = styled(Text, {
 })
 
 const getMoveNote = (
-  rec: ActionRecord, 
-  previous: ActionRecord | undefined
+  rec: MoveRecord, 
+  previous: MoveRecord | undefined
 ): ReactNode => {
 
   const result: ReactNode[] = [] 
@@ -74,7 +74,7 @@ const getMoveNote = (
       </Outer>
     )
   }
-  if (rec.action.includes('capture')) {
+  if (rec.type.includes('capture')) {
       // Even though its technically in response to the pawn
       // capture, 'meh' seems odd after a check!
     if (!(check && rec.captured!.type === 'pawn')) {

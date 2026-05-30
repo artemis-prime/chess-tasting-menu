@@ -8,8 +8,9 @@ import {
 } from 'mobx'
 
 import { 
-  type Action,
-  ActionRecord,
+  type MoveType,
+  MoveRecord,
+  type HistoryMode,
   type Move,
   type Check,  
   type Side, 
@@ -18,7 +19,6 @@ import {
   type Game,
 } from '@artemis-prime/chess-core'
 
-import type { ActionMode } from '@artemis-prime/chess-core/src/ActionRecord'
 
 interface Message {
   content: string,
@@ -90,9 +90,9 @@ class TransientMessageImpl implements ChessListener, TransientMessage {
   gameStatusChanged(s: GameStatus): void {}
   inCheck({side, from}: Check): void {}
   notInCheck(side: Side): void {}
-  actionResolved(m: Move, action: Action | null): void { }
-  actionTaken(r: ActionRecord, mode: ActionMode): void {}
-  actionsRestored(recs: readonly ActionRecord[]): void {}
+  actionResolved(m: Move, action: MoveType | null): void { }
+  actionTaken(r: MoveRecord, mode: HistoryMode): void {}
+  actionsRestored(recs: readonly MoveRecord[]): void {}
 }
 
 export {
